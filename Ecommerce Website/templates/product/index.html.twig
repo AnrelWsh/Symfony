@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProductController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+    <h1>{{ product.name }}</h1>
+
+    <ul class="productSolo">
+        <img src="{{ product.pictureUrl }}">
+        <div class="details">
+            <li><b>Price:</b> {{ product.price }}0€</li>
+            <li><b>Description:</b> {{ product.description }}</li>
+            <li><b>Remaining stock:</b> {{ product.stock }}</li>
+        </div>
+    </ul>
+
+
+    <h3>Similar products</h3>
+    <section id="services" class="services">
+        <div class="similaires">
+            {% for product in category.products %}
+                <ul>
+                    <a href="{{ path('product_show', {'id': product.id}) }}">
+                        <li>
+                            <div class="d-flex align-items-stretch">
+                                <div class="icon-box">
+                                    <img src="{{ product.pictureUrl }}">
+                                    <h3>{{ product.name }}</h3>
+                                    <p>{{ product.price }}0€</p>
+                                </div>
+                            </div>
+                        </li>
+                    </a>
+                </ul>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
